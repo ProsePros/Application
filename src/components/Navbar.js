@@ -23,9 +23,9 @@ export class Navbar extends React.Component({
 
         return (
             <nav className="cyan darken-3" role="navigation">
-                <div className="nav-wrapper container"><a id="logo-container" href="#" className="brand-logo"></a>
+                <div className="nav-wrapper container">
                     <ul className="right hide-on-med-and-down">
-                        <li><a href="#"><i class="material-icons">search</i></a></li>
+                        <li><a href="#"><i className="material-icons">search</i></a></li>
                         <li><a href="#">LOGIN</a></li>
                         <li><a href="#">SIGN UP</a></li>
                     </ul>
