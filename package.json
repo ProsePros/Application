@@ -1,7 +1,7 @@
 {
-  "name": "photographyrater",
+  "name": "prosepros",
   "version": "1.0.0",
-  "description": "",
+  "description": "TODO: Write a project description ## Installation `$ git clone https://github.com/ProsePros/Application.git`",
   "main": "server.js",
   "dependencies": {
     "dominant-color": "^0.0.1",
@@ -20,7 +20,7 @@
     "type": "git",
     "url": "git+https://github.com/afhaque/PhotographyRater.git"
   },
-  "author": "",
+  "author": "ProsePros",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/afhaque/PhotographyRater/issues"
