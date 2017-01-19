@@ -57,18 +57,14 @@ app.get('/addsentence', function(req, res){
 		if (err) throw err;
 		console.log(data.insertId);
 		var sentenceID = data.insertId;
-		res.send('success');
-
-		var queryString2 = `CREATE TABLE ? (
-			id int(11) AUTO_INCREMENT,
-	    revision varchar (2048) NOT NULL,
-	    upvotes int(11) DEFAULT 0,
-	    downvotes int(11) DEFAULT 0,
-	    PRIMARY KEY (id))`;
-
 	  var tableName = 'sentence'+sentenceID;
 
-	  connection.query(queryString2, [tableName], function(err, data){
+		res.send('success');
+
+		var queryString2 = `CREATE TABLE ${tableName} (id int(11) AUTO_INCREMENT, revision varchar (2048) NOT NULL, upvotes int(11) DEFAULT 0, downvotes int(11) DEFAULT 0, PRIMARY KEY (id))`;
+
+
+	  connection.query(queryString2, function(err, data){
 	  	if (err) throw err;
 	  	console.log(queryString2);
 	  	console.log(sentenceID);
