@@ -7,11 +7,14 @@ var Router = require('react-router');
 var Route = Router.Route;
 
 //Components
-import Home from '../src/frontend/components/Home';
-import Vote from '../src/frontend/components/Vote';
+import Master from '../components/Master';
+import Original from '../components/Original';
+import Revision from '../components/Revision';
+
 
 module.exports = (
-    <Route path="/" component={Home}>
-        <Route path='Vote' component={Vote} />
+    <Route path="/" component={Master}>
+        <Route path='Original' component={Original} />
+        <Route path='Revision' component={Revision} />
     </Route>
 );
