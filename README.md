@@ -2,7 +2,9 @@
 TODO: Write a project description
 ## Installation
 `$ git clone <ssh>`
+
 `$ npm install`
+
 `$ nodemon server.js`
 ## Usage
 TODO: Write usage instructions
