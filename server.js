@@ -49,9 +49,10 @@ app.get('/sentences', function(req, res){
 });
 
 //replace 'get' with 'post' later. 'get' was used to test without using postman
+//route to add a new sentence to the sentences table
 app.get('/addsentence', function(req, res){
 	// var text = req.body;
-	var test = 'puppies day!';
+	var test = 'Lost all my hair and all my game';
 	var queryString = `INSERT INTO sentences (original) VALUES(?)`;
 
 	connection.query(queryString, [test], function(err, data){
@@ -74,19 +75,29 @@ app.get('/addsentence', function(req, res){
 });
 
 //replace 'get' with 'post' later
+//route to add a revised version of a sentence to an existing sentence
+
 app.get('/addrevision/:id', function(req, res){
-	var sentenceID = req.params.id;
+	var sentenceID = 'sentence' + req.params.id;
 	// var testID = 'sentence1';
 	var text = req.body;
-	var sampleText = 'just testing!!!!';
+	var sampleText = 'No hair. Lonely nights.';
 	var queryString = `INSERT INTO ${sentenceID} (revision) VALUES (?)`;
 	connection.query(queryString, [sampleText], function(err, data){
 		// res.status(201);
 		if (err) throw err;
 		res.send('success!');
+		console.log(data);
 	});
-})
 
+	var queryString2 = `UPDATE sentences SET revised = true WHERE id=${req.params.id}`;
+	connection.query(queryString2, function(err, data){
+		if (err) throw err;
+		res.send('alright alright alright');
+	});
+});
+
+//upvote a particular revision of a sentence
 app.get('/upvote/:sentenceID/:revisionID', function(req, res){
 	var sentenceID = req.params.sentenceID;
 	var revisionID = req.params.revisionID;
