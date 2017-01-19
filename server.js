@@ -48,9 +48,11 @@ app.get('/sentences', function(req, res){
 	});
 });
 
+//replace 'get' with 'post' later. 'get' was used to test without using postman
+//route to add a new sentence to the sentences table
 app.get('/addsentence', function(req, res){
 	// var text = req.body;
-	var test = 'puppies day!';
+	var test = 'Lost all my hair and all my game';
 	var queryString = `INSERT INTO sentences (original) VALUES(?)`;
 
 	connection.query(queryString, [test], function(err, data){
@@ -63,7 +65,6 @@ app.get('/addsentence', function(req, res){
 
 		var queryString2 = `CREATE TABLE ${tableName} (id int(11) AUTO_INCREMENT, revision varchar (2048) NOT NULL, upvotes int(11) DEFAULT 0, downvotes int(11) DEFAULT 0, PRIMARY KEY (id))`;
 
-
 	  connection.query(queryString2, function(err, data){
 	  	if (err) throw err;
 	  	console.log(queryString2);
@@ -73,27 +74,40 @@ app.get('/addsentence', function(req, res){
 	});
 });
 
-// function createSentenceTable(id){
-// 	var queryString = `CREATE TABLE ? (
-// 	id int(11) NOT NULL AUTO_INCREMENT,
-//     revision varchar (2048) NOT NULL,
-//     upvotes int(11) DEFAULT 0,
-//     downvotes int(11) DEFAULT 0,
-//     PRIMARY KEY (id))`;
+//replace 'get' with 'post' later
+//route to add a revised version of a sentence to an existing sentence
 
-// 	connection.query(queryString, [id], function(err, data){
-// 				res.status(201);
-// 			});	
-// }
+app.get('/addrevision/:id', function(req, res){
+	var sentenceID = 'sentence' + req.params.id;
+	// var testID = 'sentence1';
+	var text = req.body;
+	var sampleText = 'No hair. Lonely nights.';
+	var queryString = `INSERT INTO ${sentenceID} (revision) VALUES (?)`;
+	connection.query(queryString, [sampleText], function(err, data){
+		// res.status(201);
+		if (err) throw err;
+		res.send('success!');
+		console.log(data);
+	});
 
-function updateUserTable(userID, photoID, url){
-		var queryString = `INSERT INTO ` + userID + ` (id, url) VALUES (?, ?)`;
-		connection.query(queryString, [photoID, url], function(err, data){
-			if (err) throw err;
-			console.log(data);
-			res.status(201);
-		});
-	}
+	var queryString2 = `UPDATE sentences SET revised = true WHERE id=${req.params.id}`;
+	connection.query(queryString2, function(err, data){
+		if (err) throw err;
+		res.send('alright alright alright');
+	});
+});
+
+//upvote a particular revision of a sentence
+app.get('/upvote/:sentenceID/:revisionID', function(req, res){
+	var sentenceID = req.params.sentenceID;
+	var revisionID = req.params.revisionID;
+	var queryString = `UPDATE ${sentenceID} SET upvotes = upvotes + 1 WHERE id = ${revisionID}`;
+	connection.query(queryString, [sentenceID], function(err, data){
+		if (err) throw err;
+		res.send('success');
+	});
+})
+
 
 
 //External routing files
@@ -103,3 +117,35 @@ function updateUserTable(userID, photoID, url){
 // require('./api/login-register-routes.js')(app);
 require('./api/static-file-routes.js')(app);
 
+
+
+
+//Sample code from previous apps
+// function updateUserTable(userID, photoID, url){
+// 		var queryString = `INSERT INTO ` + userID + ` (id, url) VALUES (?, ?)`;
+// 		connection.query(queryString, [photoID, url], function(err, data){
+// 			if (err) throw err;
+// 			console.log(data);
+// 		});
+// 	}
+
+// connection.query("INSERT INTO products SET ?", {
+//     flavor: "Rocky Road",
+//     price: 3.00,
+//     quantity: 50
+// }, function(err, res) {});
+
+// connection.query("UPDATE products SET ? WHERE ?", [{
+//     quantity: 100
+// }, {
+//     flavor: "Rocky Road"
+// }], function(err, res) {});
+
+// connection.query("DELETE FROM products WHERE ?", {
+//     flavor: "strawberry"
+// }, function(err, res) {});
+
+// connection.query('SELECT * FROM products', function(err, res) {
+//     if (err) throw err;
+//     console.log(res);
+// })
