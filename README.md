@@ -1,7 +1,7 @@
 # ProsePro Web Application
 TODO: Write a project description
 ## Installation
-`$ git clone <ssh>`
+`$ git clone https://github.com/ProsePros/Application.git`
 
 `$ npm install`
 
