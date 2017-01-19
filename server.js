@@ -48,21 +48,54 @@ app.get('/sentences', function(req, res){
 	});
 });
 
-app.post('/create', function(req, res){
+app.get('/addsentence', function(req, res){
 	// var text = req.body;
-	var test = 'happy day! happy day!';
+	var test = 'puppies day!';
 	var queryString = `INSERT INTO sentences (original) VALUES(?)`;
 
 	connection.query(queryString, [test], function(err, data){
-		res.write('success');
+		if (err) throw err;
+		console.log(data.insertId);
+		var sentenceID = data.insertId;
+		res.send('success');
+
+		var queryString2 = `CREATE TABLE ? (
+			id int(11) AUTO_INCREMENT,
+	    revision varchar (2048) NOT NULL,
+	    upvotes int(11) DEFAULT 0,
+	    downvotes int(11) DEFAULT 0,
+	    PRIMARY KEY (id))`;
+
+	  var tableName = 'sentence'+sentenceID;
+
+	  connection.query(queryString2, [tableName], function(err, data){
+	  	if (err) throw err;
+	  	console.log(queryString2);
+	  	console.log(sentenceID);
+	  	res.status(201);
+	  });
 	});
 });
+
+// function createSentenceTable(id){
+// 	var queryString = `CREATE TABLE ? (
+// 	id int(11) NOT NULL AUTO_INCREMENT,
+//     revision varchar (2048) NOT NULL,
+//     upvotes int(11) DEFAULT 0,
+//     downvotes int(11) DEFAULT 0,
+//     PRIMARY KEY (id))`;
+
+// 	connection.query(queryString, [id], function(err, data){
+// 				res.status(201);
+// 			});	
+// }
 
 function updateUserTable(userID, photoID, url){
 		var queryString = `INSERT INTO ` + userID + ` (id, url) VALUES (?, ?)`;
 		connection.query(queryString, [photoID, url], function(err, data){
 			if (err) throw err;
 			console.log(data);
+			res.status(201);
 		});
 	}
 
