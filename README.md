@@ -16,10 +16,15 @@ TODO: Write usage instructions
 5. Submit a pull request :D
 ## History
 TODO: Write history
+
 ## Credits
 Han Lee
+
 Lawrence Lau
+
 Erick Apolo
+
 Juanita Soranno
+
 ## License
 MIT License
