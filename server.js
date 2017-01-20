@@ -106,7 +106,9 @@ app.get('/upvote/:sentenceID/:revisionID', function(req, res){
 		if (err) throw err;
 		res.send('success');
 	});
-})
+});
+
+
 
 
 
