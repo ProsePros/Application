@@ -36,8 +36,10 @@ connection.connect(function(err){
 });
 
 app.get('/', function(req, res){
-	res.send('smile! you are alive!');
+	// res.send('smile! you are alive!');
+	res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
+
 
 app.get('/sentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
