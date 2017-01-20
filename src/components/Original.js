@@ -33,4 +33,7 @@ export class Original extends React.Component {
                     </div>
                 </div>
             </div>
+        );
+    }
+}
 
