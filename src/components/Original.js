@@ -1,4 +1,6 @@
-import React from 'react';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
 
 export class Original extends React.Component {
 
