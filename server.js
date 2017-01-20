@@ -45,8 +45,7 @@ app.get('/sentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
 	var result = '';
 	connection.query(queryString, function(err, data){
-		res.json(data);
-		res.status(201).end();
+		res.send(data);
 	});
 });
 
