@@ -82,11 +82,19 @@ app.get('/', function(req, res){
 	res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 
+
 //send all sentences
+
+
+
 app.get('/sentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
 	connection.query(queryString, function(err, data){
+
 		res.json(data);
+
+		res.send(data);
+
 	});
 });
 
@@ -214,4 +222,7 @@ require('./api/static-file-routes.js')(app);
 //     if (err) throw err;
 //     console.log(res);
 // })
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
