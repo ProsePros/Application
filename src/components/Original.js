@@ -19,7 +19,7 @@ export class Original extends React.Component {
                                                 <div className="input-field col s12">
                                                     <i className="material-icons prefix">mode_edit</i>
                                                     <input id="icon_prefix" type="text" className="validate">
-                                                        {/*figure out label for syntax<labelFor="icon_prefix"></labelFor>*/}
+                                                        <htmlFor="icon_prefix"></htmlFor>
                                                 </div>
                                                 <div className="card-action">
                                                     <a className="waves-effect waves-light btn right">Submit</a>
