@@ -8,6 +8,8 @@ var bodyParser = require('body-parser');
 var path = require('path');
 //module to establish mysql connection with Jaws DB
 var connection = require('./config/connection.js');
+
+var logger = require('morgan');
 //npm module 'dot-env'; deal with sensitive info
 require('dotenv').config();
 
@@ -20,12 +22,51 @@ app.listen(PORT, function(){
 	console.log('Listening on port: ' + PORT);
 });
 
+// Log every request to console
+app.use(logger('dev'));
+// Serve local files
+app.use(express.static('./public'));
+
 //Express middleware for parsing info for http POST requests
 //================================================
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
+
+
+// app.get('/css/:name', function(req, res) {
+// 	var fileName = req.params.name;
+// 	var options = {
+// 		root: __dirname + './../public/assets/css/',
+// 		dotfiles: 'deny',
+// 		headers: {
+// 		    'x-timestamp': Date.now(),
+// 		    'x-sent': true
+// 		}
+// };
+
+// app.get('/img/:name', function(req, res) {
+// 	var fileName = req.params.name;
+// 	var options = {
+// 		root: __dirname + './../public/img/',
+// 		dotfiles: 'deny',
+// 		headers: {
+// 		    'x-timestamp': Date.now(),
+// 		    'x-sent': true
+// 		}
+// 	};
+
+// 	res.sendFile(fileName, options, function (err) {
+// 		if (err) {
+// 			console.log(err);
+// 			res.status(err.status).end();
+// 		}
+// 		else {
+// 			// console.log('Sent:', fileName);
+// 		}
+// 	});
+// });
 
 //establish connection to mysql/jawsdb
 connection.connect(function(err){
@@ -35,24 +76,46 @@ connection.connect(function(err){
 	console.log('connected as ID ' + connection.threadId);
 });
 
+//serve static files
 app.get('/', function(req, res){
-	res.send('smile! you are alive!');
+	// res.send('smile! you are alive!');
+	res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 
+//send all sentences
 app.get('/sentences', function(req, res){
+	var queryString = `SELECT * FROM sentences`;
+	connection.query(queryString, function(err, data){
+		res.json(data);
+	});
+});
+
+app.get('/revisedsentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
 	var result = '';
 	connection.query(queryString, function(err, data){
-		res.json(data);
-		res.status(201).end();
+		var len = data.length;
+
+		for (var i = 0; i < len; i++){
+			// console.log(data[i]);
+			var random = Math.floor(Math.random() * len);
+			//select for sentences with revisions
+			if (data[i].revised === 1){
+				console.log(data[random]);
+			}
+		}
+		// res.json(data);
+		// res.status(201).end();
 	});
 });
+
+
 
 //replace 'get' with 'post' later. 'get' was used to test without using postman
 //route to add a new sentence to the sentences table
 app.get('/addsentence', function(req, res){
 	// var text = req.body;
-	var test = 'Lost all my hair and all my game';
+	var test = `When we access our good side we'll remember each other with fondness`;
 	var queryString = `INSERT INTO sentences (original) VALUES(?)`;
 
 	connection.query(queryString, [test], function(err, data){
@@ -81,7 +144,7 @@ app.get('/addrevision/:id', function(req, res){
 	var sentenceID = 'sentence' + req.params.id;
 	// var testID = 'sentence1';
 	var text = req.body;
-	var sampleText = 'No hair. Lonely nights.';
+	var sampleText = ``;
 	var queryString = `INSERT INTO ${sentenceID} (revision) VALUES (?)`;
 	connection.query(queryString, [sampleText], function(err, data){
 		// res.status(201);
@@ -151,3 +214,4 @@ require('./api/static-file-routes.js')(app);
 //     if (err) throw err;
 //     console.log(res);
 // })
+
