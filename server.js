@@ -27,6 +27,40 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.text());
 app.use(bodyParser.json({type:'application/vnd.api+json'}));
 
+
+// app.get('/css/:name', function(req, res) {
+// 	var fileName = req.params.name;
+// 	var options = {
+// 		root: __dirname + './../public/assets/css/',
+// 		dotfiles: 'deny',
+// 		headers: {
+// 		    'x-timestamp': Date.now(),
+// 		    'x-sent': true
+// 		}
+// };
+
+// app.get('/img/:name', function(req, res) {
+// 	var fileName = req.params.name;
+// 	var options = {
+// 		root: __dirname + './../public/img/',
+// 		dotfiles: 'deny',
+// 		headers: {
+// 		    'x-timestamp': Date.now(),
+// 		    'x-sent': true
+// 		}
+// 	};
+
+// 	res.sendFile(fileName, options, function (err) {
+// 		if (err) {
+// 			console.log(err);
+// 			res.status(err.status).end();
+// 		}
+// 		else {
+// 			// console.log('Sent:', fileName);
+// 		}
+// 	});
+// });
+
 //establish connection to mysql/jawsdb
 connection.connect(function(err){
 	if (err){
@@ -36,13 +70,19 @@ connection.connect(function(err){
 });
 
 app.get('/', function(req, res){
-	res.send('smile! you are alive!');
+	// res.send('smile! you are alive!');
+	res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 
 app.get('/sentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
 	var result = '';
 	connection.query(queryString, function(err, data){
+		var len = data.length;
+
+		for (var i = 0; i < len; i++){
+			console.log(data[i]);
+		}
 		res.json(data);
 		res.status(201).end();
 	});
