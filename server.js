@@ -69,30 +69,46 @@ connection.connect(function(err){
 	console.log('connected as ID ' + connection.threadId);
 });
 
+//serve static files
 app.get('/', function(req, res){
 	// res.send('smile! you are alive!');
 	res.sendFile(path.resolve(__dirname, 'public/index.html'));
 });
 
+//send all sentences
 app.get('/sentences', function(req, res){
+	var queryString = `SELECT * FROM sentences`;
+	connection.query(queryString, function(err, data){
+		res.json(data);
+	});
+});
+
+app.get('/revisedsentences', function(req, res){
 	var queryString = `SELECT * FROM sentences`;
 	var result = '';
 	connection.query(queryString, function(err, data){
 		var len = data.length;
 
 		for (var i = 0; i < len; i++){
-			console.log(data[i]);
+			// console.log(data[i]);
+			var random = Math.floor(Math.random() * len);
+			//select for sentences with revisions
+			if (data[i].revised === 1){
+				console.log(data[random]);
+			}
 		}
-		res.json(data);
-		res.status(201).end();
+		// res.json(data);
+		// res.status(201).end();
 	});
 });
+
+
 
 //replace 'get' with 'post' later. 'get' was used to test without using postman
 //route to add a new sentence to the sentences table
 app.get('/addsentence', function(req, res){
 	// var text = req.body;
-	var test = 'Lost all my hair and all my game';
+	var test = `When we access our good side we'll remember each other with fondness`;
 	var queryString = `INSERT INTO sentences (original) VALUES(?)`;
 
 	connection.query(queryString, [test], function(err, data){
@@ -121,7 +137,7 @@ app.get('/addrevision/:id', function(req, res){
 	var sentenceID = 'sentence' + req.params.id;
 	// var testID = 'sentence1';
 	var text = req.body;
-	var sampleText = 'No hair. Lonely nights.';
+	var sampleText = ``;
 	var queryString = `INSERT INTO ${sentenceID} (revision) VALUES (?)`;
 	connection.query(queryString, [sampleText], function(err, data){
 		// res.status(201);
