@@ -2,22 +2,22 @@
  * Created by juanitasoranno on 1/18/17.
  */
 var React = require('react');
-var $ = require('jquery');
-//jquerywindow.jQuery = $;
-//window.$ = $;
+// var $ = require('jquery');
+// jquerywindow.jQuery = $;
+// window.$ = $;
 
 
 
 
-export class Navbar extends React.Component({
-    handleChange: function (e) {
-        var name = e.target.value;
-        this.props.onChange(name);
-    },
-    handleClick: function (e) {
-        $('.side-nav').toggleClass('open');
-        $('#sidenav-overlay').toggleClass('open');
-    },
+export class Navbar extends React.Component{
+    // handleChange: function (e) {
+    //     var name = e.target.value;
+    //     this.props.onChange(name);
+    // },
+    // handleClick: function (e) {
+    //     $('.side-nav').toggleClass('open');
+    //     $('#sidenav-overlay').toggleClass('open');
+    // },
 
     render () {
 
@@ -39,5 +39,4 @@ export class Navbar extends React.Component({
             </nav>
         );
     }
-}}
-
+}
