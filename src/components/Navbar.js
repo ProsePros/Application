@@ -2,22 +2,22 @@
  * Created by juanitasoranno on 1/18/17.
  */
 var React = require('react');
-var $ = require('jquery');
-window.jQuery = $;
-window.$ = $;
+// var $ = require('jquery');
+// jquerywindow.jQuery = $;
+// window.$ = $;
 
 
 
 
-export class Navbar extends React.Component({
-    handleChange: function (e) {
-        var name = e.target.value;
-        this.props.onChange(name);
-    },
-    handleClick: function (e) {
-        $('.side-nav').toggleClass('open');
-        $('#sidenav-overlay').toggleClass('open');
-    },
+export class Navbar extends React.Component{
+    // handleChange: function (e) {
+    //     var name = e.target.value;
+    //     this.props.onChange(name);
+    // },
+    // handleClick: function (e) {
+    //     $('.side-nav').toggleClass('open');
+    //     $('#sidenav-overlay').toggleClass('open');
+    // },
 
     render () {
 
@@ -35,9 +35,8 @@ export class Navbar extends React.Component({
                         <li><a href="#">LOGIN</a></li>
                         <li><a href="#">SIGN UP</a></li>
                     </ul>
-                    {/*<a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>*/}
                 </div>
             </nav>
         );
     }
-});
+}

@@ -1,12 +1,15 @@
 /**
  * Created by juanitasoranno on 1/19/17.
  */
-import React from 'react';
-import Navbar from './Navbar';
-import Slider from './Slider';
-import Original from './Original';
-import Revision from './Revision';
-import Footer from './Footer';
+
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Navbar = require('./Navbar');
+var Slider = require('./Slider');
+var Original = require('./Original');
+var Revision = require('./Revision');
+var Footer = require('./Footer');
+
 
 
 export class Master extends React.Component {
@@ -15,11 +18,20 @@ export class Master extends React.Component {
 
         return (
             <div>
-
-                <Navbar/>
-
+                <Navbar />
+                { this.props.children}
             </div>
 
         );
     }
 }
+
+
+
+// const Master = () => (
+//     <div>
+//         <h1>test</h1>
+//     </div>
+// );
+//
+// export default Master;

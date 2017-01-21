@@ -2,9 +2,10 @@
  * Created by juanitasoranno on 1/19/17.
  */
 
-import React from 'react';
+var React = require('react');
+var ReactDOM = require('react-dom');
 
-export class Slider extends React.Component {
+export class Master extends React.Component {
     render () {
 
         return (
@@ -12,17 +13,17 @@ export class Slider extends React.Component {
             <div className="slider">
                 <ul className="slides">
                     <li>
-                        <img src="./assets/img/bg1.jpg">
+                        <img src="./assets/img/bg1.jpg"></img>
                             <div className="black-text caption left-align">
                                 <h3>ProsePros:</h3>
-                                <h5 className="black-text text-lighten-3">prose·pros<br>/prōz prōz/
-                                    <br>noun<br>Reinvent yourself by reinventing your words.</h5>
+                                <h5 className="black-text text-lighten-3">prose·pros<br>/prōz prōz/</br>
+                                    <br>noun</br>br>Reinvent yourself by reinventing your words.</h5>
                             </div>
                     </li>
                     <li>
-                        <img src="./assets/img/bg1.jpg">
+                        <img src="./assets/img/bg1.jpg"></img>
                             <div className="black-text caption left-align">
-                                <h2>Community-driven.<br><b> Community, driven.</b></h2>
+                                <h2>Community-driven.<br> Community, driven.</br></h2>
                             </div>
                     </li>
                 </ul>
