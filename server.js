@@ -222,7 +222,4 @@ require('./api/static-file-routes.js')(app);
 //     if (err) throw err;
 //     console.log(res);
 // })
-// <<<<<<< HEAD
 
-// =======
-// >>>>>>> refs/remotes/origin/master
