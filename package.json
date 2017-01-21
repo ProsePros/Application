@@ -1,7 +1,7 @@
 {
   "name": "prosepros",
   "version": "1.0.0",
-  "description": "TODO: Write a project description ## Installation `$ git clone https://github.com/ProsePros/Application.git`",
+  "description": "Craft a better sentence with the ProsePro community",
   "main": "server.js",
   "dependencies": {
     "babel-core": "^6.22.0",
@@ -18,7 +18,7 @@
     "react-addons-css-transition-group": "^15.3.2",
     "react-dom": "^15.4.2",
     "react-mixin": "^3.0.5",
-    "react-router": "^3.0.2",
+    "react-router": "^2.4.1"
     "react-router-transitions": "^2.1.0",
     "react-tap-event-plugin": "^2.0.1",
     "socket.io": "^1.7.2",
@@ -39,12 +39,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/afhaque/PhotographyRater.git"
+    "url": "git+https://github.com/ProsePros/Application.git"
   },
   "author": "ProsePros",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/afhaque/PhotographyRater/issues"
+    "url": "https://github.com/ProsePros/Application/issues"
   },
-  "homepage": "https://github.com/afhaque/PhotographyRater#readme"
+  "homepage": "https://github.com/ProsePros/Application#readme"
 }
