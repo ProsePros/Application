@@ -13,7 +13,7 @@ export class Master extends React.Component {
             <div className="slider">
                 <ul className="slides">
                     <li>
-                        <img src="./assets/img/bg1.jpg"></img>
+                        <img src="./assets/img/bg1.jpg"/>
                             <div className="black-text caption left-align">
                                 <h3>ProsePros:</h3>
                                 <h5 className="black-text text-lighten-3">prose·pros<br>/prōz prōz/</br>
@@ -21,7 +21,7 @@ export class Master extends React.Component {
                             </div>
                     </li>
                     <li>
-                        <img src="./assets/img/bg1.jpg"></img>
+                        <img src="./assets/img/bg1.jpg"/>
                             <div className="black-text caption left-align">
                                 <h2>Community-driven.<br> Community, driven.</br></h2>
                             </div>
