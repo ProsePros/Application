@@ -26,6 +26,10 @@ module.exports = (
     <Router history={browserHistory}>
             <Route path='/' component={Master}>
             //<Route path='nav' component={Navbar} />
+            // <Route path='slider' component={Slider} />
+            // <Route path='original' component={Original} />
+            // <Route path='revision' component={Revision} />
+            // <Route path='footer' component={Footer} />
             <IndexRoute component={Master} />
         </Route>
     </Router>
