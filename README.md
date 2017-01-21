@@ -1,11 +1,11 @@
 # ProsePro Web Application
-TODO: Write a project description
+Craft a better sentence with the ProsePro community
 ## Installation
 `$ git clone https://github.com/ProsePros/Application.git`
 
 `$ npm install`
 
-`$ nodemon server.js`
+`$ node server.js`
 ## Usage
 TODO: Write usage instructions
 ## Contributing
