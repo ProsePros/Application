@@ -79,7 +79,7 @@ connection.connect(function(err){
 //serve static files
 app.get('/', function(req, res){
 	// res.send('smile! you are alive!');
-	res.sendFile(path.resolve(__dirname, 'public/index.html'));
+	res.sendFile(path.resolve(__dirname, 'public/index2.html'));
 });
 
 

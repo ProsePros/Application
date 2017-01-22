@@ -17,9 +17,9 @@ export class Master extends React.Component {
     render () {
 
         return (
-            <div>
-                <Navbar />
-                { this.props.children}
+            <div className="main-container">
+                // <Navbar />
+                <h1>HELLO!</h1>
             </div>
 
         );
