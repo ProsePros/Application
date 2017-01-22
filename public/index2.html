@@ -3,8 +3,52 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<style>
+		#addsentence {
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+
+		#newsentence {
+			width: 300px;
+		}
+	</style>
 </head>
 <body>
-	<input type="text" id="newsentence">
+	<div class="container">
+		<div class="navig"></div>
+
+		<div id="addsentence">
+			<p>Add a sentence</p>
+			<input type="text" id="newsentence" name="newsentence"><button id="submitnewsentence">submit</button>
+		</div>
+		
+		<div id="display">
+			
+		</div>
+
+	</div>	
+
+	<script>
+	$(document).ready(function(){
+		var currentLocation = window.location.origin;
+
+
+		$('#submitnewsentence').click(function(){
+			var newphrase = $('#newsentence').val();
+			console.log(newphrase);
+			return false;
+		});
+
+
+
+		return false;
+	})
+
+
+
+	</script>
 </body>
 </html>
